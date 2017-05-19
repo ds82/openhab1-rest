@@ -1,0 +1,39 @@
+{
+  "name": "openhab1-rest",
+  "version": "1.0.0",
+  "description": "node module that talks to the openhab1 rest interface",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "pretest": "npm run lint",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eventsource": "1.0.1",
+    "request": "2.81.0",
+    "request-promise": "4.2.1",
+    "socket.io-client": "2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "7.0.18",
+    "jest": "20.0.3",
+    "ts-jest": "20.0.4",
+    "ts-node": "3.0.4",
+    "tslint": "5.2.0",
+    "typescript": "2.3.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+  }
+}
