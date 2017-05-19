@@ -1,7 +1,15 @@
 const EventSource = require('eventsource')
 const EventEmitter = require('events');
 
-export function createEventsource(url: string) {
+interface EventEmitter {
+  onChange: (item: string, fn: Function) => void
+};
+
+interface Events {
+  emitter: any;
+};
+
+export function createEventsource(url: string): Events {
   const eventUrl = `${url}/rest/items/events`;
   const source = new EventSource(eventUrl);
   const emitter = new EventEmitter();
@@ -10,9 +18,12 @@ export function createEventsource(url: string) {
     // todo
   };
 
+  function onChange(item: string, fn: Function) {
+
+  }
+
   return {
-    emitter,
-    source
+    emitter
   };
 }
 
