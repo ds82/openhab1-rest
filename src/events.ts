@@ -1,17 +1,17 @@
-const EventSource = require('eventsource')
+const WS = require('ws');
 const EventEmitter = require('events');
 
-interface EventEmitter {
-  onChange: (item: string, fn: Function) => void
-};
+export interface OpenhabEventEmitter {
+  onChange: (item: string, fn: Function) => void;
+}
 
 interface Events {
   emitter: any;
-};
+}
 
-export function createEventsource(url: string): Events {
-  const eventUrl = `${url}/rest/items/events`;
-  const source = new EventSource(eventUrl);
+export function createEventsource(url: string): OpenhabEventEmitter {
+  const eventUrl = `${url}/rest/items?type=json`;
+  const source = new WS(eventUrl);
   const emitter = new EventEmitter();
 
   source.onmessage = (msg: any) => {
@@ -23,7 +23,7 @@ export function createEventsource(url: string): Events {
   }
 
   return {
-    emitter
+    onChange
   };
 }
 

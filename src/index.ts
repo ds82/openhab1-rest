@@ -1,19 +1,25 @@
-
-import {createClient} from './restClient';
-import {createCommand, Command} from './command';
-import {createEventsource} from './events';
+import { RestClient, createClient } from './restClient';
+import { createCommand, Command } from './command';
+import { OpenhabEventEmitter, createEventsource } from './events';
 
 interface OpenhabClient {
-  sendCommand: Command;
-};
+  client: RestClient;
+  send: Command;
+  getStatus: Command;
+  emitter: OpenhabEventEmitter;
+}
 
 export function connect(url: string): OpenhabClient {
   const client = createClient(url);
-  const emmiter = createEventsource(url);
+  const emitter = createEventsource(url);
 
-  const sendCommand = createCommand(client);
+  const send = createCommand(client.post);
+  const getStatus = createCommand(client.get);
 
   return {
-    sendCommand
+    client,
+    send,
+    getStatus,
+    emitter
   };
 }
