@@ -1,25 +1,13 @@
-const EventSource = require('eventsource')
-const EventEmitter = require('events');
+const WS = require('ws');
 
-export function createEventsource(url: string) {
-  const eventUrl = `${url}/rest/items/events`;
-  const source = new EventSource(eventUrl);
-  const emitter = new EventEmitter();
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
 
-  source.onmessage = (msg: any) => {
-    // todo
-  };
+import { Item } from './item';
 
-  return {
-    emitter,
-    source
-  };
+export function createChangeObservable(url: string): Observable<Item> {
+  const eventUrl = `${url}/rest/items?type=json`;
+  const source = new WS(eventUrl);
+
+  return Observable.fromEvent(source, 'message');
 }
-
-// es.onmessage = function(msg) {
-//   console.log(msg);
-// }
-
-// es.onerror = function(err) {
-//   console.log('ERROR', err);
-// }
