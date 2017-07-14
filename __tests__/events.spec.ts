@@ -16,7 +16,10 @@ describe('events', () => {
 
   it('should connect to <HOST>/rest/items', () => {
     createChangeObservable(SAMPLE_URL);
-    expect(mock__WS).toHaveBeenCalledWith(`${SAMPLE_URL}/rest/items?type=json`);
+    expect(mock__WS).toHaveBeenCalledWith(
+      `${SAMPLE_URL}/rest/items?type=json`,
+      expect.objectContaining({ headers: { Accept: 'application/json' } })
+    );
   });
 
   it('should return an Observable', () => {
@@ -28,12 +31,12 @@ describe('events', () => {
     mock__WS.mockImplementation(() => stub__EE);
 
     const spy = jest.fn();
-    const FAKE_DATA = { foo: { bar: { bunny: 'foofoo' } } };
+    const FAKE_DATA = { data: { foo: { bar: { bunny: 'foofoo' } } } };
 
     createChangeObservable(SAMPLE_URL).subscribe(spy);
 
     expect(spy).not.toHaveBeenCalled();
     stub__EE.emit('message', FAKE_DATA);
-    expect(spy).toHaveBeenCalledWith(FAKE_DATA);
+    expect(spy).toHaveBeenCalledWith(FAKE_DATA.data);
   });
 });
