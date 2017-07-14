@@ -1,6 +1,6 @@
 {
   "name": "openhab1-rest",
-  "version": "0.0.1-beta1",
+  "version": "0.0.0-development",
   "description": "node module that talks to the openhab1 rest interface",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
     "test": "jest",
-    "watch:test": "jest --watchAll"
+    "watch:test": "jest --watchAll",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +33,8 @@
     "tslint": "5.2.0",
     "typescript": "2.3.2",
     "url-parse": "1.1.9",
-    "yargs": "8.0.2"
+    "yargs": "8.0.2",
+    "semantic-release": "^6.3.6"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -44,5 +46,9 @@
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ds82/openhab1-rest.git"
   }
 }
