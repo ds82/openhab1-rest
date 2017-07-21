@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "3.5.0",
+    "core-js": "2.4.1",
     "ramda": "0.24.1",
     "request": "2.81.0",
     "request-promise": "4.2.1",
@@ -24,17 +25,18 @@
   },
   "devDependencies": {
     "@types/bluebird": "3.5.4",
+    "@types/core-js": "0.9.36",
     "@types/jest": "20.0.2",
-    "@types/node": "7.0.18",
+    "@types/node": "4.2.15",
     "@types/ramda": "0.24.3",
     "jest": "20.0.4",
+    "semantic-release": "^6.3.6",
     "ts-jest": "20.0.7",
     "ts-node": "3.0.4",
     "tslint": "5.2.0",
     "typescript": "2.3.2",
     "url-parse": "1.1.9",
-    "yargs": "8.0.2",
-    "semantic-release": "^6.3.6"
+    "yargs": "8.0.2"
   },
   "jest": {
     "moduleFileExtensions": [
